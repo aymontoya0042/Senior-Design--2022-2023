@@ -244,7 +244,7 @@ static xQueueHandle duty_queue = NULL;
 static EventGroupHandle_t s_wifi_event_group;
 
 int i = 0;
-
+int k = 1;
 
 void wifi_init_softap()
 {

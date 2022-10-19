@@ -1,0 +1,13 @@
+# Target labels
+ bootloader
+# Source files and their labels
+C:/Users/monto/OneDrive/Documents/esp32/esp-idf-v4.4/examples/get-started/blink/main/blink/build/CMakeFiles/bootloader
+C:/Users/monto/OneDrive/Documents/esp32/esp-idf-v4.4/examples/get-started/blink/main/blink/build/CMakeFiles/bootloader.rule
+C:/Users/monto/OneDrive/Documents/esp32/esp-idf-v4.4/examples/get-started/blink/main/blink/build/CMakeFiles/bootloader-complete.rule
+C:/Users/monto/OneDrive/Documents/esp32/esp-idf-v4.4/examples/get-started/blink/main/blink/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule
+C:/Users/monto/OneDrive/Documents/esp32/esp-idf-v4.4/examples/get-started/blink/main/blink/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
+C:/Users/monto/OneDrive/Documents/esp32/esp-idf-v4.4/examples/get-started/blink/main/blink/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
+C:/Users/monto/OneDrive/Documents/esp32/esp-idf-v4.4/examples/get-started/blink/main/blink/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
+C:/Users/monto/OneDrive/Documents/esp32/esp-idf-v4.4/examples/get-started/blink/main/blink/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
+C:/Users/monto/OneDrive/Documents/esp32/esp-idf-v4.4/examples/get-started/blink/main/blink/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
+C:/Users/monto/OneDrive/Documents/esp32/esp-idf-v4.4/examples/get-started/blink/main/blink/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule

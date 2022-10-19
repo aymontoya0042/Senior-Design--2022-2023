@@ -1,0 +1,6 @@
+source "C:/Users/monto/esp/esp-idf/components/app_update/Kconfig.projbuild"
+source "C:/Users/monto/esp/esp-idf/components/bootloader/Kconfig.projbuild"
+source "C:/Users/monto/esp/esp-idf/components/esp_rom/Kconfig.projbuild"
+source "C:/Users/monto/esp/esp-idf/components/esptool_py/Kconfig.projbuild"
+source "C:/Users/monto/esp/esp-idf/components/partition_table/Kconfig.projbuild"
+source "C:/Users/monto/OneDrive/Documents/esp32/esp-idf-v4.4/examples/get-started/blink/main/blink/main/Kconfig.projbuild"

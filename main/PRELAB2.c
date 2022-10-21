@@ -39,7 +39,7 @@ const static char http_index_hml[] = R"=====(
             name="viewport"
             content="width = device-width initial-scale = 1.0"
         />
-        <title>EP ELECTRIC EVTOG </title>
+        <title>Communication </title>
     <body style="background-color: #6495ED ;">
         <div class="header"><h1>EP Electric EV2G</h1></div>
         <input
@@ -270,31 +270,6 @@ void wifi_init_softap()
     ESP_ERROR_CHECK(esp_wifi_start());
 }
 
-
-int powerConversion(float value){
- int Percent;
-if(value >= 2.4){
-    Percent  = 90;
-}
-else if(value >2.0 && value <2.4  ){
-Percent = 80;
-}
-else if (value >1.8 && value < 2.0){
- Percent = 70 ;
-}
-else if (value >1.5 && value < 1.8){
- Percent = 60 ;
-}
-    else if (value >1.2 && value < 1.5){
- Percent = 50 ;
-}
-else {
-    Percent  = 40;
-}
-return Percent;
-
-}
-
 void onURL(struct netconn *conn, char command)
 {
 
@@ -311,35 +286,13 @@ void onURL(struct netconn *conn, char command)
         }
         else //If the ONBOARD LED is Off, send a 0 to the webpage
         {
-            	gpio_set_level(GPIO_BUTTON_0, 0);
+            gpio_set_level(GPIO_BUTTON_0, 0);
             printf("LED Current level: 0\n");
             netconn_write(conn, http_txt_hdr, sizeof(http_txt_hdr) - 1, NETCONN_NOCOPY);
             netconn_write(conn, "0", 1, NETCONN_NOCOPY);
         }
         
     }
-    else if (command == '1') //If the get data button is pressed
-    {
-        int adc = adc1_get_raw(ADC1_CHANNEL_6); //Get the ADC reading
-        float voltage = (adc * 3.3)/4095;          //Multiply times the ratio so that our reading comes out from 0V to 3.3V (but in milivolts)
-        float percent = powerConversion(voltage);
-
-        char ans[50];                                //String that we're going to send back to the webpage
-        memset(ans, 0, sizeof(ans));
-if(percent ==40){
-           sprintf(ans," Battery : %.2f\n Low Power Charge Now\n", percent);
-        printf("%d \n",adc);
-        netconn_write(conn, http_txt_hdr, sizeof(http_txt_hdr) - 1, NETCONN_NOCOPY);
-        netconn_write(conn, ans, sizeof(ans), NETCONN_NOCOPY);
-}
-else{
-        sprintf(ans,"Battery Percent %.2f ", percent);
-        printf("%d \n",adc);
-        netconn_write(conn, http_txt_hdr, sizeof(http_txt_hdr) - 1, NETCONN_NOCOPY);
-        netconn_write(conn, ans, sizeof(ans), NETCONN_NOCOPY);
-}
-    }
-
     else if(command == '3'){
            GPIO.out ^= BIT18;
         	
@@ -359,9 +312,8 @@ else{
         }
 
     else if(command == '2'){
-          
-            GPIO.out ^= BIT19;
-        	
+        GPIO.out ^= BIT19;
+
         if((GPIO.out & BIT19) == BIT19){
             gpio_set_level(GPIO_BUTTON_2, 1);
             printf("LED3 Current level: 1\n");
@@ -456,7 +408,7 @@ void setGPIO()
     gpio_pad_select_gpio(onboardLED);
     gpio_set_direction(onboardLED, GPIO_MODE_OUTPUT);
 
-gpio_config_t io_conf;
+    gpio_config_t io_conf;
 	io_conf.intr_type = GPIO_INTR_DISABLE;
 	io_conf.mode = GPIO_MODE_OUTPUT;
 	io_conf.pin_bit_mask = GPIO_OUTPUT_SEL;
@@ -486,18 +438,16 @@ void ADCtask(void *pvParameter){
     int i = 0;
     while(1){
         if(xQueueReceive(duty_queue,&Firsthouse,(TickType_t)10) == pdPASS){ //wait for queueu to recieve 
-        printf("First house voltage : %3.f \n",Firsthouse);
-        i++;
-                if(i == 100){
-                     gpio_set_level(GPIO_BUTTON_0, 1);
-                vTaskDelay(900/portTICK_PERIOD_MS);
-                      gpio_set_level(GPIO_BUTTON_0, 0);
-                      i =0;
-                }
-
+            printf("First house voltage : %3.f \n",Firsthouse);
+            i++;
+            if(i == 100){
+                    gpio_set_level(GPIO_BUTTON_0, 1);
+            vTaskDelay(900/portTICK_PERIOD_MS);
+                    gpio_set_level(GPIO_BUTTON_0, 0);
+                    i =0;
+            }
         }
-        
-        }
+    }
 }
 
 
@@ -505,7 +455,7 @@ void app_main()
 {
     nvs_flash_init();
     setADC();
-   setGPIO();
+    setGPIO();
     wifi_init_softap();
   //  setupGPIO();
    
